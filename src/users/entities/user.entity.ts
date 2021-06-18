@@ -6,4 +6,5 @@ export class User {
   linkedlnProfile: string;
   id: string;
   create_at: string;
+  modified_at: string;
 }

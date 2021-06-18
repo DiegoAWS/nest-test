@@ -1,30 +1,33 @@
 import {
   IsEmail,
-  IsEmpty,
+  IsNotEmpty,
   IsInt,
   IsUrl,
   Length,
   Max,
   Min,
+  IsString,
 } from 'class-validator';
 
 export class CreateUserDto {
-  @IsEmpty()
+  @IsNotEmpty()
   @Length(3, 255)
+  @IsString()
   name: string;
 
-  @IsEmpty()
+  @IsNotEmpty()
+  @IsString()
   @Length(3, 255)
   lastName: string;
 
   @IsInt()
-  @Min(0)
-  @Max(10)
+  @Min(16)
+  @Max(120)
   age: number;
 
   @IsEmail()
   email: string;
 
   @IsUrl()
-  linkedlnProfile: string;
+  linkedinProfile: string;
 }

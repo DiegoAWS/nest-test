@@ -70,13 +70,4 @@ jobs:
       - name: cd
         run: cd dist
       - name: git status
-        run:git status
-
-
-
-      # - name: Add Heroku remote
-      #   run: heroku git:remote --app $HEROKU_APP_NAME
-      #   env:
-      #     HEROKU_APP_NAME: ${{ secrets.HEROKU_APP_NAME }}
-      # - name: Push to Heroku
-      #   run: git push heroku master
+        run: git status

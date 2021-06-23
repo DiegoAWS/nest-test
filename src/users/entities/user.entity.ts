@@ -5,6 +5,5 @@ export class User {
   email: string;
   linkedlnProfile: string;
   id: string;
-  create_at: string;
-  modified_at: string;
+  created_at: string;
 }

@@ -14,8 +14,7 @@ export class UsersService {
     const newUser: User = plainToClass(User, {
       ...createUserDto,
       id: uuidv4(),
-      create_at: now,
-      modified_at: now,
+      created_at: now,
     });
 
     this.usersStore = [...this.usersStore, newUser];

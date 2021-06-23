@@ -23,12 +23,12 @@ export class UsersController {
   }
 
   @Get()
-  findAll() {
+  findAll(): User[] {
     return this.usersService.findAll();
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
+  remove(@Param('id') id: string): void {
     this.usersService.remove(id);
   }
 }

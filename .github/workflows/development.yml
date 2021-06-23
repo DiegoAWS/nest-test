@@ -5,7 +5,7 @@ on:
       - master
 jobs:
   test:
-    name: Unitary Tests
+    name: Unitary and E2E Tests
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repo

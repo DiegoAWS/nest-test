@@ -1,3 +1,4 @@
+import { Transform } from 'class-transformer';
 import {
   IsEmail,
   IsNotEmpty,
@@ -20,6 +21,7 @@ export class CreateUserDto {
   @Length(3, 255)
   lastName: string;
 
+  @Transform(({ value }) => parseInt(value))
   @IsInt()
   @Min(16)
   @Max(120)

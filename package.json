@@ -1,6 +1,6 @@
 {
-  "name": "nodejs-task-management",
-  "version": "0.0.1",
+  "name": "nest-test",
+  "version": "0.1.0",
   "description": "",
   "author": "",
   "private": true,
@@ -26,11 +26,13 @@
     "@nestjs/core": "^7.6.15",
     "@nestjs/mapped-types": "*",
     "@nestjs/platform-express": "^7.6.15",
+    "@nestjs/swagger": "^4.8.1",
     "class-transformer": "^0.4.0",
     "class-validator": "^0.13.1",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
     "rxjs": "^6.6.6",
+    "swagger-ui-express": "^4.1.6",
     "uuid": "^8.3.2"
   },
   "devDependencies": {

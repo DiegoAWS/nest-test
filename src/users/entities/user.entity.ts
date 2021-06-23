@@ -14,7 +14,7 @@ export class User {
   email: string;
 
   @ApiProperty()
-  linkedlnProfile: string;
+  linkedinProfile: string;
 
   @ApiProperty()
   id: string;

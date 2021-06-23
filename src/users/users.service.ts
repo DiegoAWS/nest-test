@@ -27,6 +27,12 @@ export class UsersService {
   }
 
   remove(id: string): void {
-    this.usersStore = this.usersStore.filter((item) => item.id !== id);
+    const newUsers = this.usersStore.filter((item) => item.id !== id);
+    if (this.usersStore.length !== newUsers.length) {
+      this.usersStore = newUsers;
+      return;
+    } else {
+      throw new Error('Element not Found');
+    }
   }
 }

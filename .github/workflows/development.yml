@@ -50,10 +50,33 @@ jobs:
         with:
           name: dist
           path: dist
-      - name: Deploy to Heroku
-        uses: akhileshns/heroku-deploy@v3.12.12
-        with:
-          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
-          heroku_app_name: "nest-test-backend"
-          heroku_email: "diego.netsolutions@gmail.com"
-          appdir: "dist"
+      - name: Heroku login credentials
+        run: |
+          cat > ~/.netrc <<EOF
+            machine api.heroku.com
+              login $HEROKU_EMAIL
+              password $HEROKU_API_KEY
+            machine git.heroku.com
+              login $HEROKU_EMAIL
+              password $HEROKU_API_KEY
+          EOF
+        env:
+          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+          HEROKU_EMAIL: ${{ secrets.HEROKU_EMAIL }}
+      - name: test heroku login
+        run: heroku apps
+      - name: list
+        run: ls -a
+      - name: cd
+        run: cd dist
+      - name: git status
+        run:git status
+
+
+
+      # - name: Add Heroku remote
+      #   run: heroku git:remote --app $HEROKU_APP_NAME
+      #   env:
+      #     HEROKU_APP_NAME: ${{ secrets.HEROKU_APP_NAME }}
+      # - name: Push to Heroku
+      #   run: git push heroku master

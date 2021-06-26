@@ -20,36 +20,13 @@ jobs:
         env:
           CI: true
         run: npm run test:e2e
-  build:
-    name: Build Nest App
-    needs: test
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout Repo
-        uses: actions/checkout@v2.3.2
-      - name: Install Dependencies
-        run: npm install
-      - name: Build
-        run: npm run postinstall
-      - name: Add Proper Procfile
-        run: npm run copy-procfile
-      - name: Archive Production Artifact
-        uses: actions/upload-artifact@v2
-        with:
-          name: dist
-          path: dist
   deploy:
     name: Deploy to Heroku
-    needs: build
+    needs: test
     runs-on: ubuntu-latest        
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v2.3.2
-      - name: Download Artifact
-        uses: actions/download-artifact@v2
-        with:
-          name: dist
-          path: dist
       - name: Heroku login credentials
         run: |
           cat > ~/.netrc <<EOF

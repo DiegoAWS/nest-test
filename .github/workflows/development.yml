@@ -36,6 +36,8 @@ jobs:
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v2.3.2
+        with:
+          fetch-depth: 0
       - name: Heroku login credentials
         run: |
           cat > ~/.netrc <<EOF
@@ -50,9 +52,7 @@ jobs:
           HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
           HEROKU_EMAIL: ${{ secrets.HEROKU_EMAIL }}
       - name: Set heroku remote
-        run: heroku git:remote -a nest-test-backend
-      - name: Unshallow code
-        run: git fetch --all --unshallow  
+        run: heroku git:remote -a nest-test-backend 
       - name: push code to heroku
         run: git push heroku master
      

@@ -4,8 +4,34 @@ on:
     branches:
       - master
 jobs:
+  unitary_test:
+    name: Unitary Tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v2.3.2
+      - name: Install Dependencies
+        run: npm install
+      - name: Run Unitary Tests
+        env:
+          CI: true
+        run: npm test
+  integration_test:
+    name: E2E Tests
+    needs: unitary_test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v2.3.2
+      - name: Install Dependencies
+        run: npm install
+      - name: Run E2E Tests
+        env:
+          CI: true
+        run: npm run test:e2e
   deploy:
     name: Deploy to Heroku
+    needs: integration_test
     runs-on: ubuntu-latest        
     steps:
       - name: Checkout Repo

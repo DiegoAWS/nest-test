@@ -43,5 +43,5 @@ jobs:
       - name: Set heroku remote
         run: git remote add heroku https://git.heroku.com/nest-test-backend.git
       - name: push code to heroku
-        run: git push --force heroku master
+        run: git push heroku master
      

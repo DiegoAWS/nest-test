@@ -63,11 +63,8 @@ jobs:
         env:
           HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
           HEROKU_EMAIL: ${{ secrets.HEROKU_EMAIL }}
-      - name: test heroku login
-        run: heroku apps
-      - name: list
-        run: ls -a
-      - name: cd
-        run: cd dist
-      - name: git status
-        run: git status
+      - name: Set heroku remote
+        run: git remote add heroku https://git.heroku.com/nest-test-backend.git
+      - name: push code to heroku
+        run: git push --force heroku master
+     

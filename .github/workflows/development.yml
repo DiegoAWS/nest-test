@@ -16,7 +16,7 @@ jobs:
         env:
           CI: true
         run: npm test
-integration_test:
+  integration_test:
     name: E2E Tests
     needs: unitary_test
     runs-on: ubuntu-latest

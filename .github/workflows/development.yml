@@ -51,6 +51,8 @@ jobs:
           HEROKU_EMAIL: ${{ secrets.HEROKU_EMAIL }}
       - name: Set heroku remote
         run: heroku git:remote -a nest-test-backend
+      - name: Unshallow code
+        run: git fetch --all --unshallow  
       - name: push code to heroku
         run: git push heroku master
      

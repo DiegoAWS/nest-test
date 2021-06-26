@@ -4,8 +4,8 @@ on:
     branches:
       - master
 jobs:
-  test:
-    name: Unitary and E2E Tests
+  unitary_test:
+    name: Unitary Tests
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repo
@@ -16,13 +16,22 @@ jobs:
         env:
           CI: true
         run: npm test
+integration_test:
+    name: E2E Tests
+    needs: unitary_test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v2.3.2
+      - name: Install Dependencies
+        run: npm install
       - name: Run E2E Tests
         env:
           CI: true
         run: npm run test:e2e
   deploy:
     name: Deploy to Heroku
-    needs: test
+    needs: integration_test
     runs-on: ubuntu-latest        
     steps:
       - name: Checkout Repo
@@ -41,7 +50,7 @@ jobs:
           HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
           HEROKU_EMAIL: ${{ secrets.HEROKU_EMAIL }}
       - name: Set heroku remote
-        run: git remote add heroku https://git.heroku.com/nest-test-backend.git
+        run: heroku git:remote -a nest-test-backend
       - name: push code to heroku
         run: git push heroku master
      
